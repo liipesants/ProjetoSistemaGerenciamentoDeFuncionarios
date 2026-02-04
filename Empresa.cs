@@ -18,6 +18,7 @@ namespace SistemaGerenciamentoFuncionario
         {
             departamentos.Add(departamento);
         }
+     
         public void MostrarDepartamentos()
         {
             if (NumeroDeDepartamentos != 0)
@@ -49,6 +50,21 @@ namespace SistemaGerenciamentoFuncionario
             {
                 Console.WriteLine("Funcionário não encontrado.");
             }
+        }
+        public void ListarFuncionariosDeUmDepartamento(string nomeDepto)
+        {        
+            bool acheiDepartamento = false;
+
+            foreach (Departamento departamento in departamentos)
+            {
+                if (departamento.NomeDeDepartamento == nomeDepto)
+                {
+                    acheiDepartamento = true;
+                    if (departamento.MostrarFuncionarios());
+                }
+            }
+            if (!acheiDepartamento) { Console.WriteLine("Departamento não encontrado!"); }
+               
         }
     }
 }

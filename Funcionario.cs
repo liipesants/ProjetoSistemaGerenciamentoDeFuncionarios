@@ -26,38 +26,32 @@ namespace SistemaGerenciamentoFuncionario
         {
             double salarioFinal;
 
-            if (cargo == "gerente")
+            if (cargo.ToLower() == "gerente")
             {
-                salarioFinal = ((20 / 100) * salarioBase) + salarioBase;
+                salarioFinal = salarioBase * 1.20;
                 return salarioFinal;
             }
-            else if (cargo == "analista")
+            else if (cargo.ToLower() == "analista")
             {
-                salarioFinal = ((20 / 100) * salarioBase + salarioBase);
+                salarioFinal = salarioBase * 1.10;
                 return salarioFinal;
             }
-            else 
+            else
             {
                 return salarioBase;
             }
-            
+
         }
         public string Situacao
         {
             get
             {
                 if (CalcularSalario() >= 5000)
-                {
                     return "Bem pago";
-                }
-                else if (CalcularSalario() >= 2000 && CalcularSalario() <5000)
-                {
+                if (CalcularSalario() >= 2000 && CalcularSalario() < 5000)
                     return "Regular";
-                }
-                else
-                {
-                    return "Baixo";
-                }
+
+                return "Baixo";
             }
         }
     }

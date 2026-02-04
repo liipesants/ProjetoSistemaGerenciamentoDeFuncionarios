@@ -14,14 +14,16 @@ namespace SistemaGerenciamentoFuncionario
         {
             this.nomeDepartamento = nomeDepartamento;
         }
-        public string NomeDeDepartamento { get { return  nomeDepartamento; }  }
-        public int NumerosDeFuncionarios { get { return funcionarios.Count; }  }
+        public string NomeDeDepartamento { get { return nomeDepartamento; } }
+        public int NumerosDeFuncionarios { get { return funcionarios.Count; } }
         public void AdicionarFuncionarios(Funcionario funcionario)
         {
             funcionarios.Add(funcionario);
         }
-        public void MostrarFuncionarios()
+        public bool MostrarFuncionarios()
         {
+           
+
             if (NumerosDeFuncionarios != 0)
             {
                 foreach (Funcionario funcionario in funcionarios)
@@ -31,11 +33,11 @@ namespace SistemaGerenciamentoFuncionario
                     Console.WriteLine("Salário Base do Funcionário: " + funcionario.SalarioBase);
                     Console.WriteLine("Cargo do Funcionário: " + funcionario.Cargo);
                 }
+                return true;
             }
-            else
-            {
-                Console.WriteLine("Não há funcionários cadastrados!");
-            }
+            Console.WriteLine("Não há funcionários cadastrados!");
+            return false;
+
         }
         public void ListarFuncionariosBemPagos()
         {
@@ -68,9 +70,7 @@ namespace SistemaGerenciamentoFuncionario
                     Console.WriteLine("Salário Base do Funcionário: " + funcionario.SalarioBase);
                     Console.WriteLine("Cargo do Funcionário: " + funcionario.Cargo);
                     Console.WriteLine("Situação do Funcionário: " + funcionario.Situacao);
-
                     return true;
-                    break;
                 }
             }
             return false;
