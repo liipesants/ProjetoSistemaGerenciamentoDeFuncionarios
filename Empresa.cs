@@ -35,21 +35,27 @@ namespace SistemaGerenciamentoFuncionario
             }
 
         }
-        public void BuscarFuncionarioPorCodigo(string cod)
-        {
-            bool achei = false;
-
-            foreach (Departamento departamento in departamentos)
+        public Departamento ProcurarDepartamento(string nomeDepto)
+        { 
+            foreach(Departamento departamento in departamentos)
             {
-                if (departamento.BuscarFuncionario(cod))
+                if (nomeDepto == departamento.NomeDeDepartamento)
                 {
-                    achei = true;
+                    return departamento;
                 }
             }
-            if (!achei)
+            return null;
+        }
+        public Departamento ObterDepartamento(string nomeDepto)
+        {
+            foreach (Departamento departamento in departamentos)
             {
-                Console.WriteLine("Funcionário não encontrado.");
+                if (departamento.NomeDeDepartamento == nomeDepto)
+                {
+                    return departamento;
+                }
             }
+            return null;
         }
         public void ListarFuncionariosDeUmDepartamento(string nomeDepto)
         {        

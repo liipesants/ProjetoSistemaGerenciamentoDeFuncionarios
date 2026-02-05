@@ -61,28 +61,37 @@
                             break;
                         }
 
-                        Console.Write("Em qual departamento o funcionário trabalha? ");
+                        Console.Write("Informe o departamento no qual o funcionário irá trabalhar: ");
                         buscaDepto = Console.ReadLine();
+                      
+                        Departamento deptoEncontrado = empresa.ObterDepartamento(buscaDepto);
 
-                        Console.Write("Código: ");
-                        codigo = Console.ReadLine();
-                        Console.Write("Nome: ");
-                        nome = Console.ReadLine();
-                        Console.Write("Salário Base: ");
-                        salarioBase = double.Parse(Console.ReadLine());
-                        Console.Write("Cargo: ");
-                        cargo = Console.ReadLine();
+                        if (deptoEncontrado != null)
+                        {
+                            Console.WriteLine($"--- CADASTRANDO EM: {deptoEncontrado.NomeDeDepartamento} ---");
+                            Console.Write("Código: ");
+                            codigo = Console.ReadLine();
+                            Console.Write("Nome: ");
+                            nome = Console.ReadLine();
+                            Console.Write("Salário Base: ");
+                            salarioBase = double.Parse(Console.ReadLine());
+                            Console.Write("Cargo: ");
+                            cargo = Console.ReadLine();
 
-                        funcionario = new Funcionario(codigo, nome, salarioBase, cargo);
+                            funcionario = new Funcionario(codigo, nome, salarioBase, cargo);                         
+                            deptoEncontrado.AdicionarFuncionarios(funcionario);
 
-                        departamento.AdicionarFuncionarios(funcionario);
-
-                        Console.WriteLine($"Sucesso! {nome} adicionado ao departamento {departamento.NomeDeDepartamento}.");
+                            Console.WriteLine($"Sucesso! {nome} adicionado ao setor {deptoEncontrado.NomeDeDepartamento}.");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Erro: Departamento não encontrado!");
+                        }
                         break;
 
                     case 3:
 
-                        Console.WriteLine("Informe o nome do departamento que você ");
+                        Console.WriteLine("Informe o nome do departamento: ");
                         nomeDepto = Console.ReadLine();
                         empresa.ListarFuncionariosDeUmDepartamento(nomeDepto);
                         break;
@@ -105,7 +114,7 @@
                     case 6:
                         Console.Write("Informe o código parasim busca: ");
                         codBusca = Console.ReadLine();
-                        empresa.BuscarFuncionarioPorCodigo(codBusca);
+                        departamento.BuscarFuncionario(codBusca);
                         break;
 
                     case 7:
